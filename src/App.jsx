@@ -191,14 +191,12 @@ export default function App() {
             )}
 
             {/* CTA */}
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => window.open(CALENDLY_URL, "_blank")}
               style={{ display: "block", width: "100%", padding: "15px", fontSize: "15px", fontWeight: "600", borderRadius: "12px", background: "#ffffff", color: "#0f0f0f", border: "none", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }}
             >
               Book your free onboarding call →
-            </a>
+            </button>
             <p style={{ fontSize: "13px", color: "#555", textAlign: "center", margin: "0.75rem 0 0" }}>
               30 minutes. We map out what's leaking and whether RealFlow fixes it.
             </p>
