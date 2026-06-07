@@ -10,12 +10,13 @@ const MULTIPLIERS = {
 
 const LABELS = {
   "under-5-min": "under 5 minutes",
-  "5-30-min": "5-30 minutes",
-  "30-60-min": "30-60 minutes",
-  "1-4-hrs": "1-4 hours",
+  "5-30-min": "5–30 minutes",
+  "30-60-min": "30–60 minutes",
+  "1-4-hrs": "1–4 hours",
   "4-plus-hrs": "4+ hours",
 };
 
+// UPDATE THIS URL if Calendly link ever changes
 const CALENDLY_URL = "https://calendly.com/liviteeholdings/30min";
 
 export default function App() {
@@ -51,7 +52,9 @@ export default function App() {
   };
 
   const borderStyle = (field) =>
-    errors[field] ? "1px solid #E24B4A" : "1px solid rgba(0,0,0,0.12)";
+    errors[field]
+      ? "1px solid #E24B4A"
+      : "1px solid rgba(0,0,0,0.12)";
 
   return (
     <div style={{
@@ -61,10 +64,11 @@ export default function App() {
       alignItems: "flex-start",
       justifyContent: "center",
       padding: "3rem 1rem",
-      fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+      fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
     }}>
       <div style={{ width: "100%", maxWidth: "520px" }}>
 
+        {/* Header */}
         <div style={{ marginBottom: "2rem" }}>
           <p style={{ fontSize: "11px", color: "#5DCAA5", textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 0.75rem" }}>
             AgenticLeverage · RealFlow AI Stack
@@ -77,6 +81,7 @@ export default function App() {
           </p>
         </div>
 
+        {/* Fields */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "1.25rem" }}>
 
           <div style={{ background: "#1a1a1a", border: borderStyle("leads"), borderRadius: "12px", padding: "1rem 1.25rem" }}>
@@ -133,35 +138,38 @@ export default function App() {
             >
               <option value="">Select response time</option>
               <option value="under-5-min">Under 5 minutes</option>
-              <option value="5-30-min">5 - 30 minutes</option>
-              <option value="30-60-min">30 minutes - 1 hour</option>
-              <option value="1-4-hrs">1 - 4 hours</option>
+              <option value="5-30-min">5 – 30 minutes</option>
+              <option value="30-60-min">30 minutes – 1 hour</option>
+              <option value="1-4-hrs">1 – 4 hours</option>
               <option value="4-plus-hrs">4+ hours</option>
             </select>
           </div>
 
         </div>
 
+        {/* Error message */}
         {showError && (
           <div style={{ background: "rgba(226,75,74,0.12)", border: "1px solid rgba(226,75,74,0.3)", borderRadius: "8px", padding: "0.75rem 1rem", marginBottom: "1rem" }}>
             <p style={{ fontSize: "14px", color: "#E24B4A", margin: 0 }}>Please fill in all fields to see your result.</p>
           </div>
         )}
 
+        {/* Calculate button */}
         <button
           onClick={calculate}
-          style={{ width: "100%", padding: "15px", fontSize: "15px", fontWeight: "600", borderRadius: "12px", cursor: "pointer", marginBottom: "1.5rem", background: "#5DCAA5", color: "#0f0f0f", border: "none" }}
+          style={{ width: "100%", padding: "15px", fontSize: "15px", fontWeight: "600", borderRadius: "12px", cursor: "pointer", marginBottom: "1.5rem", background: "#5DCAA5", color: "#0f0f0f", border: "none", letterSpacing: "0.01em" }}
         >
           Calculate my lead loss
         </button>
 
+        {/* Result */}
         {result !== null && (
           <div>
             {result.multiplier === 0 ? (
               <div style={{ background: "rgba(93,202,165,0.1)", border: "1px solid rgba(93,202,165,0.25)", borderRadius: "12px", padding: "1.5rem 1.25rem", marginBottom: "1.5rem", textAlign: "center" }}>
                 <p style={{ fontSize: "12px", color: "#5DCAA5", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 0.5rem" }}>You're already fast</p>
                 <p style={{ fontSize: "15px", color: "#aaa", margin: 0, lineHeight: "1.6" }}>
-                  Responding in under 5 minutes puts you ahead of most agents. RealFlow locks that in automatically, 24/7, even when you're on a showing.
+                  Responding in under 5 minutes puts you ahead of most agents. RealFlow locks that in — automatically, 24/7, even when you're on a showing.
                 </p>
               </div>
             ) : (
@@ -176,19 +184,20 @@ export default function App() {
                 </div>
                 <div style={{ background: "#1a1a1a", borderRadius: "12px", padding: "1rem 1.25rem" }}>
                   <p style={{ fontSize: "13px", color: "#666", margin: 0, lineHeight: "1.8" }}>
-                    {leads} leads/month x 12 months x {rate}% close rate x ${parseFloat(commission).toLocaleString()} avg commission x {result.multiplier * 100}% loss rate (responding in {LABELS[result.responseTime]}) = <span style={{ color: "#ffffff", fontWeight: "500" }}>${result.annualLoss.toLocaleString()}/year</span>
+                    {leads} leads/month × 12 months × {rate}% close rate × ${parseFloat(commission).toLocaleString()} avg commission × {result.multiplier * 100}% loss rate (responding in {LABELS[result.responseTime]}) = <span style={{ color: "#ffffff", fontWeight: "500" }}>${result.annualLoss.toLocaleString()}/year</span>
                   </p>
                 </div>
               </div>
             )}
 
-            
+            {/* CTA */}
+            <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "block", width: "100%", padding: "15px", fontSize: "15px", fontWeight: "600", borderRadius: "12px", background: "#ffffff", color: "#0f0f0f", border: "none", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }}
             >
-              Book your free onboarding call
+              Book your free onboarding call →
             </a>
             <p style={{ fontSize: "13px", color: "#555", textAlign: "center", margin: "0.75rem 0 0" }}>
               30 minutes. We map out what's leaking and whether RealFlow fixes it.
